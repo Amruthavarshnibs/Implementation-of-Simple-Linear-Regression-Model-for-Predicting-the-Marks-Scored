@@ -8,76 +8,75 @@ To write a program to predict the marks scored by a student using the simple lin
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
 ## Algorithm
-1. Upload the file to your cell.
-2. Type the required program.
-3. Print the program. 
-4. End the program.
+1. Import necessary libraries
+2. Load the dataset and split into training and testing sets
+3. Create and train the Linear Regression model
+4.  Use the trained model to predict marks in the test dataset
 
 ## Program:
-```python
+```
 /*
 Program to implement the simple linear regression model for predicting the marks scored.
-Developed by: Amrutha varshni
-RegisterNumber: 212222040007
+Developed by: MOHAMED HAMEEM SAJITH J
+RegisterNumber:  212223240090
+*/
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.metrics import mean_absolute_error , mean_squared_error
-df=pd.read_csv('student_scores.csv')
-df.head()
+df=pd.read_csv('/content/ml-lab-1.csv')
+df.head(10)
 
-df.tail()
+plt.scatter(df['x'],df['y'])
+plt.xlabel('x')
+plt.ylabel('y')
 
-X = df.iloc[:,:-1].values
-X
-
-y = df.iloc[:,-1].values
-y
+x=df.iloc[:,0:1]
+y=df.iloc[:,-1]
+x
 
 from sklearn.model_selection import train_test_split
-X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=1/3,random_state=0)
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=0)
 
 from sklearn.linear_model import LinearRegression
-regressor = LinearRegression()
-regressor.fit(X_train,y_train)
-y_pred=regressor.predict(X_test)
 
-y_pred
+lr=LinearRegression()
+lr.fit(x_train,y_train)
 
-y_test
+x_train
+y_train
 
-plt.scatter(X_train,y_train,color="green")
-plt.plot(X_train,regressor.predict(X_train),color="blue")
-plt.title("Hours vs Scores (Training Set)")
-plt.xlabel("Hours")
-plt.ylabel("Scores")
-plt.show()
+lr.predict(x_test.iloc[0].values.reshape(1,1))
 
-plt.scatter(X_test,y_test,color="grey")
-plt.plot(X_test,regressor.predict(X_test),color="purple")
-plt.title("Hours vs Scores (Training Set)")
-plt.xlabel("Hours")
-plt.ylabel("Scores")
-plt.show()
-*/
+plt.scatter(df['x'],df['y'])
+plt.xlabel('x')
+plt.ylabel('y')
+plt.plot(x_train,lr.predict(x_train),color='red')
+print("coefficient",lr.coef_)
+print("intercept",lr.intercept_)
+
 ```
 
 ## Output:
-![Screenshot 2023-04-02 135257](https://user-images.githubusercontent.com/118541549/229341282-3246344d-9aa2-4ac9-aa8c-8c7c5e0624ac.png)
+# 1. HEAD:
 
+   ![image](https://github.com/Sajith7862/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/145972360/aaed63ef-4488-4a36-8e4e-7aaf912fcbaa)
 
-![Screenshot 2023-04-02 135324](https://user-images.githubusercontent.com/118541549/229341261-7f9066e2-464c-4379-80b1-63d0229eca57.png)
+# 2. GRAPH OF PLOTTED DATA:
 
+   ![image](https://github.com/Sajith7862/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/145972360/bb0ca266-592e-42ed-9e62-49b253ef2a01)
 
-![Screenshot 2023-04-02 135005](https://user-images.githubusercontent.com/118541549/229341137-bc6a2858-e5d8-49ed-85eb-8520dd7767dd.png)
+# 3.TRAINED DATA:
 
+![image](https://github.com/Sajith7862/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/145972360/2bb94dcb-d869-4c58-b84d-a3b74ec040f4)
 
-![ml2 4](https://user-images.githubusercontent.com/118541549/229340951-cf9e78cd-8b9c-47c0-ace7-076da23dd078.png)
-![ml2 5](https://user-images.githubusercontent.com/118541549/229340953-26bf19f8-8d5c-4fe0-9b4f-71a64704fe2e.png)
-![ml2 6](https://user-images.githubusercontent.com/118541549/229340985-d230d8f8-2d2a-4b17-a9ff-3c01d6d159b6.png)
-![ml2 7](https://user-images.githubusercontent.com/118541549/229340990-c3a9efc8-f1a6-4f0f-86f9-0abb47663efd.png)
-![ml2 8](https://user-images.githubusercontent.com/118541549/229340995-caefa0bd-c622-439a-a9ae-e588092fb398.png)
+# 4.LINE OF REGRESSION:
 
+![image](https://github.com/Sajith7862/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/145972360/e3d46f47-f7e7-4bd0-b872-1df58962c5e4)
+
+# 5.COEFFICIENT AND INTERCEPT VALUES:
+
+![image](https://github.com/Sajith7862/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/145972360/780a0b1e-4c46-44c0-ad16-c791eeec6429)
 
 
 ## Result:
